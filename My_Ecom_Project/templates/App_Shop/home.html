@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% block body_block %}
+
+<div class="wrapper-txt">
+  <div class="static-txt">Buy</div>
+    <ul class="dynamic-txts">
+      <li><span>Good!</span></li>
+      <li><span>Good!</span></li>
+      <li><span>from E-Cart!</span></li>
+    </ul>
+
+</div>
+
+
+<!-- for Buy Good Animation text -->
+<style media="screen">
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.wrapper-txt{
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  margin-left: 30%;
+}
+.wrapper-txt .static-txt{
+  color: #343A40;
+  font-size: 60px;
+  font-weight: 400;
+}
+.wrapper-txt .dynamic-txts{
+  margin-left: 15px;
+  height: 90px;
+  line-height: 90px;
+  overflow: hidden;
+}
+.dynamic-txts li{
+  list-style: none;
+  color: #fb3640;
+  font-size: 60px;
+  font-weight: 500;
+  position: relative;
+  top: 0;
+  animation: slide 4s steps(2) infinite;
+}
+@keyframes slide {
+  100%{
+    top: -360px;
+  }
+}
+.dynamic-txts li span{
+  position: relative;
+  margin: 5px 0;
+  line-height: 90px;
+}
+.dynamic-txts li span::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  border-left: 2px solid #FC6D6D;
+  animation: typing 2s steps(12) infinite;
+}
+@keyframes typing {
+  40%, 60%{
+    left: calc(100% + 30px);
+  }
+  100%{
+    left: 0;
+  }
+}
+</style>
+<!-- buy god css ends -->
+
+<div class="container my-5">
+  <h2 class="my-5">Featured Products</h2>
+  <div class="row">
+    {% for product in products %}
+    <a href="{% url 'App_Shop:product_detail' pk=product.pk %}">
+    <div class="col-md-6 col-sm-12 col-lg-3">
+      <figure class="card card-product">
+        <div class="img-wrap">
+          <img src="/media/{{product.mainimage}}" style="width:100%; height:200px;" alt="">
+        </div>
+        <figcaption class="info-wrap">
+          <h6 class="title"> <a href="{% url 'App_Shop:product_detail' pk=product.pk %}">{{product.name}}</a> </h6>
+          <div class="action-wrap">
+            <div class="price-wrap h5">
+              <span class="price-new">&#2547; {{ product.price|floatformat:2 }} </span>
+              <span class="price-old"><strike>&#2547; {{ product.old_price|floatformat:2 }}</strike> </span>
+            </div>
+
+          </div>
+        </figcaption>
+      </figure>
+    </div>
+  </a>
+    {% endfor %}
+  </div>
+
+  <br>
+  <br>
+  <br>
+
+  <!-- for displaying page numbers -->
+
+    <nav aria-label="Page navigation example">
+      {% if products.has_other_pages %}
+    <ul class="pagination justify-content-center">
+      {% if products.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ products.previous_page_number }}" tabindex="-1">&laquo;</a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="?page=1">&laquo;</a>
+      </li>
+      {% endif %}
+
+      {% for product in products.paginator.page_range %}
+
+        {% if products.number == product %}
+        <li class="page-item active">
+          <a class="page-link" href="?page={{ product }}" tabindex="-1">{{ product }}</a>
+        </li>
+
+        {% else %}
+
+        <li class="page-item">
+          <a class="page-link" href="?page={{ product }}" tabindex="-1">{{ product }}</a>
+        </li>
+
+        {% endif %}
+
+      {% endfor %}
+
+      {% if products.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ products.next_page_number }}">&raquo;</a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="?page={{ products.paginator.number_pages }}">&raquo;</a>
+      </li>
+      {% endif %}
+    </ul>
+    {% endif %}
+  </nav>
+
+</div>
+
+{% endblock%}

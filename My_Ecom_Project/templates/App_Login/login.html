@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title_block %} Login {% endblock %}
+{% block body_block %}
+
+<style media="screen">
+.btn-login2{
+  font-size:1.1em;
+  height: 30px;
+  width: 120px;
+  border: 0px solid #fb3640;
+  border-radius: 3px;
+  color: white;
+  background-color: #fb3640;
+}
+.btn-login2:hover{
+  color: white;
+  background-color: #343A40;
+  transition: .3s;
+}
+</style>
+
+<h2>Login</h2>
+<form class="" method="POST">
+  {{form|crispy}}
+  {% csrf_token %}
+  <button class="btn-login2" type="submit" name="login">Login</button>
+</form>
+
+<br>
+
+<p>Doesn't have an account?</p> <a href="{% url 'App_Login:signup' %}">Create New Account</a>
+
+{% endblock%}

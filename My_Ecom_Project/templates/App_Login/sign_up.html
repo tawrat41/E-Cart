@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title_block %} Create New Account {% endblock %}
+{% block body_block %}
+
+<style media="screen">
+  .btn-signup {
+    color:white;
+    background-color: #fb3640;
+    border: 0px solid #fb3640;
+    border-radius: 2px;
+    height:35px;
+    width:150px;
+  }
+  .btn-signup:hover{
+    background-color: #343A40;
+    transition: 0.3s;
+  }
+</style>
+
+<h2>Create New Account</h2>
+<form class=""  method="POST">
+  {{ form|crispy }}
+  {% csrf_token %}
+  <button type="submit" class="btn-signup" name="button">Create Account</button>
+</form>
+<br>
+<p>Already have an account?</p> <a href="{%url 'App_Login:login' %}">Login Here</a>
+
+{% endblock %}

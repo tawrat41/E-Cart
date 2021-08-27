@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title_block %} Profile {% endblock %}
+{% block body_block %}
+
+<style media="screen">
+.btn-saveProfile{
+  float:left;
+  background-color:#fb3640;
+  border: 0px solid #fb3640;
+  border-radius: 4px;
+  height:40px;
+  width:150px;
+  font-size:1.2em;
+  color: white;
+}
+.btn-saveProfile:hover{
+  background-color: #343A40;
+  transition:.3s;
+}
+</style>
+
+<br>
+<br>
+<form class="" method="POST">
+  {{form|crispy}}
+  {% csrf_token %}
+  <button type="submit" class="btn-saveProfile">Save</button>
+</form>
+<br>
+<br>
+{% endblock %}

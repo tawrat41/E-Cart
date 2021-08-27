@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block body_block %}
+
+<style media="screen">
+  .total_row{
+    background-color:white;
+    /* color: white; */
+  }
+  .total_row td{
+    font-size:20px;
+    border:2px solid #343A40;
+    /* background-color: #fb3640; */
+    /* color: white; */
+  }
+  .btn-shopping,.btn-checkout{
+    margin-right: 2px;
+    width:180px;
+    height:40px;
+    background-color: #fb3640;
+    color: white;
+    border:0px solid;
+    border-radius: 4px;
+  }
+  .btn-shopping:hover, .btn-checkout:hover{
+    background-color: #343A40;
+    color: white;
+    transition:.3s;
+    /* font-size:1.1em; */
+    /* width:190px; */
+    transition-timing-function: ease-out;
+  }
+</style>
+
+<div class="container my-5">
+  <div class="container my-3">
+    <h2 style="padding-left:12px;">Your Cart</h2>
+  </div>
+  <table class="table">
+    <thead style="color:white;  border:3px solid #343A40; border-radius:10px; background-color:#343A40;">
+      <tr>
+        <td scope="row" width="15%" align="center">#</td>
+        <td scope="col" width="25%">Image</td>
+        <td scope="col">Product Name</td>
+        <td scope="col">Quantity</td>
+        <td scope="col" align="right">Price</td>
+        <td scope="col">Remove</td>
+      </tr>
+    </thead>
+    <tbody>
+      {% for cart in carts %}
+      <tr style="border-left:2px solid #343A40; border-right:2px solid #343A40">
+        <td scope="row" align="center">{{ forloop.counter }}</td>
+        <td> <img src="/media/{{cart.item.mainimage}}" style="width:25%; height:30%;" alt=""> </td>
+        <td>{{cart.item.name}}</td>
+        <td>
+          <a href="{% url 'App_Order:decrease' pk=cart.item.pk %}" class="mr-2"> <span class="badge badge-light"> <i class="fas fa-minus"></i> </span> </a>
+          {{cart.quantity}}
+          {% if cart.item.product_quantity <= 0 %}
+            <a href="" class="mr-2" style="cursor:not-allowed; opacity:.5"> <span class="badge badge-light"> <i class="fas fa-plus"></i> </span> </a>
+          {% else %}
+            <a href="{% url 'App_Order:increase' pk=cart.item.pk %}" class="mr-2"> <span class="badge badge-light"> <i class="fas fa-plus"></i> </span> </a>
+            {% endif %}
+        </td>
+        <td align="right">&#2547; {{cart.get_total}}</td>
+        <td align="center"><a href="{% url 'App_Order:remove' pk=cart.item.pk %}"><span style="color:#fb3640"><i class="fas fa-trash-alt"></i></span></a> </td>
+      </tr>
+      {% endfor %}
+      <tr class="total_row">
+        <!-- <td scope="row"></td> -->
+        <td colspan="4" align='right' style="padding-right:30px;">Total</td>
+        <td colspan="2" align="right">&#2547; {{ order.get_totals | floatformat:2 }}</td>
+      </tr>
+      <tr>
+        <td scope="row"> </td>
+        <td colspan="5" class="text-right">
+          <a href="{% url 'App_Shop:home' %}"><button class="btn-shopping" type="button" name="shopping">Continue to Shopping</button> </a>
+          <a href="{% url 'App_Payment:checkout' %}"> <button class="btn-checkout" type="button" name="checkout">Proceed to Checkout</button> </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+
+<style media="screen">
+  .btn-savaAddress{
+    float:right;
+    background-color:#fb3640;
+    border: 0px solid #fb3640;
+    border-radius: 3px;
+    height:40px;
+    width:130px;
+    font-size:1.1em;
+    color: white;
+  }
+  .btn-savaAddress:hover{
+    background-color: #343A40;
+    transition:.3s;
+  }
+  .btn-makePayment{
+    /* float:right; */
+    font-size:1.4em;
+    background-color: #343A40;
+    color: white;
+    height: 50px;
+    width: 150%;
+    border: 1.5px solid #343A40;
+    border-radius: 4px;
+  }
+  .btn-makePayment:hover{
+    background-color:#fb3640;
+    color: black;
+    /* width:100%; */
+    transition:.3s;
+  }
+</style>
+
+<div class="container mt-5">
+  <h2 class="mb-3">
+      Shipping Address > <span class="text-muted">Checkout</span>
+  </h2>
+  <div class="row" style="width:100%;">
+    <div class="col-md-9">
+      <div class="card mb-5" style="height:auto">
+          <div class="card-body" style="border:2px solid #343A40; border-radius: 3px;">
+            <form method="POST">
+              {{form|crispy}}
+              {% csrf_token %}
+              <button type="submit" class="btn-savaAddress">Save Address</button>
+            </form>
+          </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <h4>Order Summary</h4>
+      <div class="card" style="height:auto; width:150%; border:2px solid #343A40; border-radius: 3px;">
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            {% for order_item in order_items %}
+            <li class="list-group-item"><img src="/media/{{order_item.item.mainimage}}" style="width:25px; height:30px;" alt=""> {{ order_item.item.name }} x {{ order_item.quantity }} <span style="float:right;">&#2547; {{ order_item.get_total }}</span> </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="card-footer" style="background-color: #fb3640; border:1px solid #fb3640;border-radius: 1px; color:white;">
+          <span class="float-left" style="font-size:1.15em;">Total Price</span>
+          <span class="float-right" style="font-size:1.15em;">&#2547; {{order_total|floatformat:2}}</span>
+        </div>
+      </div>
+      <br>
+      {% if saved_address.is_fully_filled %}
+      <a href="{% url 'App_Payment:payment' %}"><button class="btn-makePayment" type="submit" name="makePayment">Make Payment</button> </a>
+      {% else %}
+      <div class="alert alert-warning">
+        <p>Please fill up all the information to make payment.</p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
