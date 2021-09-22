@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
 {% block body_block %}
+
+<style media="screen">
+#card_product{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: transform .5s;
+}
+#card_product:hover{
+  transform: scale(1.1);
+}
+</style>
+
 <center>
 {% if searched %}
   <h2>You searched for "{{ searched }}"</h2>
@@ -8,7 +19,7 @@
   {% for item in items %}
     <a href="{% url 'App_Shop:product_detail' pk=item.pk %}">
     <div class="col-md-6 col-sm-12 col-lg-3">
-      <figure class="card card-product">
+      <figure class="card card-product" id="card_product">
         <div class="img-wrap">
           <img src="/media/{{item.mainimage}}" style="width:100%; height:200px;" alt="">
         </div>

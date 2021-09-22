@@ -1,0 +1,173 @@
+<style media="screen">
+ul {
+  margin: 0px;
+  padding: 0px;
+}
+.footer-section {
+background: #151414;
+position: relative;
+}
+.footer-cta {
+border-bottom: 1px solid #373636;
+}
+.single-cta i {
+color: #ff5e14;
+font-size: 30px;
+float: left;
+margin-top: 8px;
+}
+.cta-text {
+padding-left: 15px;
+display: inline-block;
+}
+.cta-text h4 {
+color: #fff;
+font-size: 20px;
+font-weight: 400;
+margin-bottom: 2px;
+}
+.cta-text span {
+color: #757575;
+font-size: 15px;
+}
+.footer-content {
+position: relative;
+}
+.footer-pattern img {
+position: absolute;
+top: 0;
+left: 0;
+height: 330px;
+background-size: cover;
+background-position: 100% 100%;
+}
+.footer-logo {
+margin-bottom: 30px;
+}
+.footer-logo img {
+  max-width: 200px;
+}
+.footer-text p {
+margin-bottom: 14px;
+font-size: 14px;
+color: #7e7e7e;
+line-height: 28px;
+}
+.footer-social-icon span {
+color: #fff;
+display: block;
+font-size: 20px;
+font-weight: 700;
+margin-bottom: 20px;
+}
+.footer-social-icon a {
+color: #fff;
+font-size: 16px;
+margin-right: 15px;
+}
+.footer-social-icon i {
+height: 40px;
+width: 40px;
+text-align: center;
+line-height: 38px;
+border: 1px solid #ff5e14;
+border-radius: 50%;
+}
+.facebook-bg:hover{
+background: #3B5998;
+border: 0;
+transition: 0.8s;
+}
+.twitter-bg:hover{
+background: #55ACEE;
+border: 0;
+transition: 0.8s;
+}
+.google-bg:hover{
+background: #DD4B39;
+border: 0;
+transition: 0.8s;
+}
+.copyright-area{
+background: #202020;
+padding: 25px 0;
+}
+.copyright-text p {
+margin: 0;
+font-size: 14px;
+color: #878787;
+}
+.copyright-text p a{
+color: #ff5e14;
+}
+</style>
+
+
+<footer class="footer-section" id="footer">
+        <div class="container">
+            <div class="footer-cta pt-5 pb-5 mr-auto">
+                <div class="row">
+                    <div class="col-xl-4 col-md-4 mb-30">
+                        <div class="row justify-content-center">
+                          <div class="single-cta">
+                              <i class="fas fa-map-marker-alt"></i>
+                              <div class="cta-text">
+                                  <h4>Find us</h4>
+                                  <span>178/4, Gulshan Avenue, Dhaka, Bangladesh</span>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-4 mb-30">
+                      <div class="row justify-content-center">
+                        <div class="single-cta">
+                            <i class="fas fa-phone"></i>
+                            <div class="cta-text">
+                                <h4>Call us</h4>
+                                <span>+8801987-123456, +8801987-654321</span>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-4 col-md-4 mb-30">
+                        <div class="row justify-content-center">
+                          <div class="single-cta">
+                              <i class="far fa-envelope-open"></i>
+                              <div class="cta-text">
+                                  <h4>Mail us</h4>
+                                  <span>e-cart@info.com</span>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-content pt-5 pb-5">
+                    <div class="row justify-content-center">
+                        <div class="footer-widget">
+                            <div class="footer-logo" align="center">
+                                <a href="{% url 'App_Shop:home' %}"><img src="/media/e-cart logo_final_color.png" class="img-fluid" alt="logo"></a>
+                            </div>
+                            <div class="footer-text" align="center">
+                                <p>E-Cart is guided by four principles: customer obsession rather than competitor focus, passion for invention, commitment to operational excellence, and long-term thinking. E-Cart strives to be Earth’s most customer-centric company, Earth’s best employer, and Earth’s safest place to work. Customer reviews, 1-Click shopping, personalized recommendations, Prime, Fulfillment by E-Cart, AWS, Kindle Direct Publishing, Kindle, Career Choice, Fire tablets, Fire TV, E-Cart Echo, Alexa, Just Walk Out technology, E-Cart Studios, and The Climate Pledge are some of the things pioneered by E-Cart.</p>
+                            </div>
+                            <div class="footer-social-icon" align="center">
+                                <span>Follow us</span>
+                                <a href="#"><i class="fab fa-facebook-f facebook-bg"></i></a>
+                                <a href="#"><i class="fab fa-twitter twitter-bg"></i></a>
+                                <a href="#"><i class="fab fa-google-plus-g google-bg"></i></a>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="copyright-area">
+            <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="copyright-text">
+                            <p>Copyright &copy; 2021, All Right Reserved by <a href="{% url 'App_Shop:home' %}">E-Cart</a></p>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </footer>

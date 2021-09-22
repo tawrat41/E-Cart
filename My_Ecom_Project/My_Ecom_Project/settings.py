@@ -20,10 +20,16 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SUIT_CONFIG = {
+    'ADMIN_NAME': 'E-Cart Admin Dashboard',
+
+}
+
 
 # Application definition
 
 INSTALLED_APPS = [
+    'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

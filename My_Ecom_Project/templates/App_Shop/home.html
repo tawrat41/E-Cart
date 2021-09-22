@@ -26,7 +26,7 @@
   margin-left: 30%;
 }
 .wrapper-txt .static-txt{
-  color: #343A40;
+  color: #202020;
   font-size: 60px;
   font-weight: 400;
 }
@@ -38,7 +38,7 @@
 }
 .dynamic-txts li{
   list-style: none;
-  color: #fb3640;
+  color: #ff5e14;
   font-size: 60px;
   font-weight: 500;
   position: relative;
@@ -73,25 +73,51 @@
     left: 0;
   }
 }
+
+/* for designing card */
+#card_product{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: transform .5s;
+}
+#card_product:hover{
+  transform: scale(1.1);
+}
+
+.hr_tag{
+  border-top: 3px solid #202020;
+}
+/* buy god css ends */
+
+/* image slides */
+
+/* img slides ends */
+
 </style>
-<!-- buy god css ends -->
+
+
+<!-- for image slide show -->
+
+<!-- <img src="/media/ecart.jpg" alt="" height="25%" width="100%"> -->
+
+<!-- image slide show ends -->
 
 <div class="container my-5">
-  <h2 class="my-5">Featured Products</h2>
+  <h2 class="my-4">Featured Products</h2>
+  <hr class="hr_tag">
   <div class="row">
     {% for product in products %}
     <a href="{% url 'App_Shop:product_detail' pk=product.pk %}">
     <div class="col-md-6 col-sm-12 col-lg-3">
-      <figure class="card card-product">
+      <figure class="card card-product" id="card_product">
         <div class="img-wrap">
-          <img src="/media/{{product.mainimage}}" style="width:100%; height:200px;" alt="">
+          <img src="/media/{{product.mainimage}}" style="width:100%; height:100%;" alt="">
         </div>
         <figcaption class="info-wrap">
-          <h6 class="title"> <a href="{% url 'App_Shop:product_detail' pk=product.pk %}">{{product.name}}</a> </h6>
+          <h6 class="title"> <a href="{% url 'App_Shop:product_detail' pk=product.pk %}" style="color:#ff5e15;">{{product.name}}</a> </h6>
           <div class="action-wrap">
             <div class="price-wrap h5">
-              <span class="price-new">&#2547; {{ product.price|floatformat:2 }} </span>
-              <span class="price-old"><strike>&#2547; {{ product.old_price|floatformat:2 }}</strike> </span>
+              <span class="price-new">&#2547;{{ product.price|floatformat:2 }}</span>
+              <span class="price-old"><strike>&#2547;{{ product.old_price|floatformat:2 }}</strike></span>
             </div>
 
           </div>
@@ -105,7 +131,7 @@
   <br>
   <br>
   <br>
-
+<hr class="hr_tag">
   <!-- for displaying page numbers -->
 
     <nav aria-label="Page navigation example">
@@ -113,11 +139,11 @@
     <ul class="pagination justify-content-center">
       {% if products.has_previous %}
       <li class="page-item">
-        <a class="page-link" href="?page={{ products.previous_page_number }}" tabindex="-1">&laquo;</a>
+        <a class="page-link" href="?page={{ products.previous_page_number }}" tabindex="-1" style="color:#ff5e15;">&laquo;</a>
       </li>
       {% else %}
       <li class="page-item disabled">
-        <a class="page-link" href="?page=1">&laquo;</a>
+        <a class="page-link" href="?page=1" style="color:#ff5e15;">&laquo;</a>
       </li>
       {% endif %}
 
@@ -125,13 +151,13 @@
 
         {% if products.number == product %}
         <li class="page-item active">
-          <a class="page-link" href="?page={{ product }}" tabindex="-1">{{ product }}</a>
+          <a class="page-link" href="?page={{ product }}" tabindex="-1" style="background-color:#ff5e15; border: 1px solid #202020;">{{ product }}</a>
         </li>
 
         {% else %}
 
         <li class="page-item">
-          <a class="page-link" href="?page={{ product }}" tabindex="-1">{{ product }}</a>
+          <a class="page-link" href="?page={{ product }}" tabindex="-1" style="color:#202020;">{{ product }}</a>
         </li>
 
         {% endif %}
@@ -140,11 +166,11 @@
 
       {% if products.has_next %}
       <li class="page-item">
-        <a class="page-link" href="?page={{ products.next_page_number }}">&raquo;</a>
+        <a class="page-link" href="?page={{ products.next_page_number }}" style="color:#ff5e15;">&raquo;</a>
       </li>
       {% else %}
       <li class="page-item disabled">
-        <a class="page-link" href="?page={{ products.paginator.number_pages }}">&raquo;</a>
+        <a class="page-link" href="?page={{ products.paginator.number_pages }}" style="color:#ff5e15;">&raquo;</a>
       </li>
       {% endif %}
     </ul>

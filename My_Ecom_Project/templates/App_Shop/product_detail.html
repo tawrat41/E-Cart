@@ -1,5 +1,31 @@
 {% extends 'base.html' %}
 {% block body_block %}
+
+<style media="screen">
+.card{
+  border: 0px solid #202020;
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2);
+  height: auto;
+  background-color: #fdfcfc;
+}
+.currency, .num{
+  color: #ff5e14;
+}
+.out_of_stock{
+  color: #ff5e15;
+}
+#add_to_cart{
+  color: #ff5e15;
+  border: 1px solid #ff5e15;
+  transition: 0.4s;
+}
+#add_to_cart:hover{
+  background-color: #ff5e15;
+  color:white;
+}
+
+</style>
+
   <div class="container my-5">
     <div class="card">
       <div class="row">
@@ -7,12 +33,12 @@
           <article class="gallary-wrap">
             <div class="image-wrap">
               <div class="img-big-wrap">
-                <a href="#"><img src="/media/{{object.mainimage}}" style="width:450px"></a>
+                <a href="#"><img src="/media/{{object.mainimage}}" style="width:80%"></a>
               </div>
             </div>
           </article>
         </aside>
-        <aside class="col-sm-7">
+        <aside class="col-sm-7" style="background-color: #f5f5f5;">
           <article class="card-body p-5">
             <h3 class="title mp-3" >{{object.name}}</h3>
             <p class="price-detail-wrap">
@@ -27,11 +53,13 @@
                 <p>{{object.detail_text|linebreaks}}</p>
               </dd>
             </dl>
+            <br>
             {% if product.product_quantity <= 0 %}
-              <h3>Out of stock</h3>
+              <h3 class="out_of_stock">Out of stock</h3>
               <a class="btn btn-lg btn-outline-primary text-uppercase" style="color:currentColor; cursor:not-allowed; opacity:.5; text-decoration: none" > <i class="fa fa-shopping-cart"></i> Add to Cart </a>
             {% else %}
-              <a href="{% url 'App_Order:add' pk=object.pk %}" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fa fa-shopping-cart"></i> Add to Cart </a>
+              <h4>In Stock</h4>
+              <a href="{% url 'App_Order:add' pk=object.pk %}" class="btn btn-lg btn-outline-primary text-uppercase" id="add_to_cart"> <i class="fa fa-shopping-cart"></i> Add to Cart </a>
             {% endif %}
           </article>
         </aside>

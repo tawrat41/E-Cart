@@ -20,7 +20,7 @@ def home(request):
         # for paging the home page
 
     page_num = request.GET.get('page')
-    paginator = Paginator(products, 4)
+    paginator = Paginator(products, 12)
 
     try:
         products= paginator.page(page_num)

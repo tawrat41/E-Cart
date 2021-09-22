@@ -8,7 +8,7 @@
   }
   .total_row td{
     font-size:20px;
-    border:2px solid #343A40;
+    border:2px solid #202020;
     /* background-color: #fb3640; */
     /* color: white; */
   }
@@ -16,17 +16,15 @@
     margin-right: 2px;
     width:180px;
     height:40px;
-    background-color: #fb3640;
+    background-color: #ff5e14;
     color: white;
     border:0px solid;
     border-radius: 4px;
+    transition:.3s;
   }
   .btn-shopping:hover, .btn-checkout:hover{
-    background-color: #343A40;
+    background-color: #202020;
     color: white;
-    transition:.3s;
-    /* font-size:1.1em; */
-    /* width:190px; */
     transition-timing-function: ease-out;
   }
 </style>
@@ -36,11 +34,11 @@
     <h2 style="padding-left:12px;">Your Cart</h2>
   </div>
   <table class="table">
-    <thead style="color:white;  border:3px solid #343A40; border-radius:10px; background-color:#343A40;">
+    <thead style="color:white;  border:3px solid #202020; border-radius:10px; background-color:#202020;">
       <tr>
         <td scope="row" width="15%" align="center">#</td>
-        <td scope="col" width="25%">Image</td>
-        <td scope="col">Product Name</td>
+        <td scope="col" width="150px">Image</td>
+        <td scope="col" width="30%">Product Name</td>
         <td scope="col">Quantity</td>
         <td scope="col" align="right">Price</td>
         <td scope="col">Remove</td>
@@ -48,7 +46,7 @@
     </thead>
     <tbody>
       {% for cart in carts %}
-      <tr style="border-left:2px solid #343A40; border-right:2px solid #343A40">
+      <tr style="border-left:2px solid #202020; border-right:2px solid #202020">
         <td scope="row" align="center">{{ forloop.counter }}</td>
         <td> <img src="/media/{{cart.item.mainimage}}" style="width:25%; height:30%;" alt=""> </td>
         <td>{{cart.item.name}}</td>
@@ -62,7 +60,7 @@
             {% endif %}
         </td>
         <td align="right">&#2547; {{cart.get_total}}</td>
-        <td align="center"><a href="{% url 'App_Order:remove' pk=cart.item.pk %}"><span style="color:#fb3640"><i class="fas fa-trash-alt"></i></span></a> </td>
+        <td align="center"><a href="{% url 'App_Order:remove' pk=cart.item.pk %}"><span style="color:#ff5e14"><i class="fas fa-trash-alt"></i></span></a> </td>
       </tr>
       {% endfor %}
       <tr class="total_row">
