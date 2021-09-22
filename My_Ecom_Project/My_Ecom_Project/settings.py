@@ -16,9 +16,9 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 SECRET_KEY = '9a3qcs+2bz=#wqbl(v7+u+uj=nxm#2%4vevy#$t1nrt#ca7nxr'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://127.0.0.1:8000/', '']
 
 SUIT_CONFIG = {
     'ADMIN_NAME': 'E-Cart Admin Dashboard',
@@ -50,6 +50,7 @@ AUTH_USER_MODEL = 'App_Login.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
