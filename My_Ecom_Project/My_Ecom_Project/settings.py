@@ -18,7 +18,7 @@ SECRET_KEY = '9a3qcs+2bz=#wqbl(v7+u+uj=nxm#2%4vevy#$t1nrt#ca7nxr'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['http://127.0.0.1:8000/', '']
+ALLOWED_HOSTS = ['http://127.0.0.1:8000/', 'e-cart-online.herokuapp.com/']
 
 SUIT_CONFIG = {
     'ADMIN_NAME': 'E-Cart Admin Dashboard',
