@@ -1,7 +1,4 @@
 import os
-import  django_heroku
-import  dj_database_url
-from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -17,9 +14,9 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 SECRET_KEY = '9a3qcs+2bz=#wqbl(v7+u+uj=nxm#2%4vevy#$t1nrt#ca7nxr'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['http://127.0.0.1:8000/', 'e-cart-online.herokuapp.com/']
+ALLOWED_HOSTS = []
 
 SUIT_CONFIG = {
     'ADMIN_NAME': 'E-Cart Admin Dashboard',
@@ -51,7 +48,6 @@ AUTH_USER_MODEL = 'App_Login.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -131,14 +127,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIR = [STATIC_DIR,]
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 #media files
 
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
 LOGIN_URL = '/account/login/'
-
-
-django_heroku.settings(locals())
